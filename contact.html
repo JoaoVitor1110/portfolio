@@ -11,10 +11,10 @@
 </head>
     <body>
         <header>
-            <nav class="navbar" role="navigation" aria-label="main navigation">
+            <nav class="navbar is-large" role="navigation" aria-label="main navigation">
                 <div class="navbar-brand">
-                  <a class="navbar-item" href="index.html">
-                    <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
+                  <a class="navbar-image is-128x128" href="index.html">
+                    <img src="imagens/logo.png" width="112" height="28">
                   </a>
                 </div>
               
@@ -22,6 +22,9 @@
                   <div class="navbar-start">
                     <a class="navbar-item" href="index.html">
                       Inicio
+                    </a>
+                    <a class="navbar-item" href="portfolio.html">
+                      Projetos
                     </a>
                     <a class="navbar-item" href="contact.html">
                       Contato
@@ -53,7 +56,31 @@
                         </div>
                 </div>
                 <div class="column is-9">
-                   2
+                  <div class="field">
+                    <label class="label">Email</label>
+                    <div class="control has-icons-left has-icons-right">
+                      <input class="input" type="email" placeholder="Digite seu email :D">
+                      <span class="icon is-small is-left">
+                        <i class="fas fa-envelope"></i>
+                      </span>
+                      <span class="icon is-small is-right">
+                        <i class="fas fa-exclamation-triangle"></i>
+                      </span>
+                    </div>
+                  </div>
+                  
+                  <div class="field">
+                    <label class="label">Mensagem</label>
+                    <div class="control">
+                      <textarea class="textarea" placeholder="Digite sua mensagem! :P"></textarea>
+                    </div>
+                  </div>
+                  
+                  <div class="field is-grouped">
+                    <div class="control">
+                      <button class="button is-link">Enviar</button>
+                    </div>
+                  </div>
                 </div>
         </section>
     </body>
