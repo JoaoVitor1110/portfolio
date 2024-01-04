@@ -3,55 +3,58 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>João Vitor dos Santos Alves</title>
+        <title>Portfolio - João Vitor dos Santos Alves</title>
         <link rel="stylesheet" href="style.css">
+        <script src="./script.js" defer></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.4/css/bulma.min.css" integrity="sha512-HqxHUkJM0SYcbvxUw5P60SzdOTy/QVwA1JJrvaXJv4q7lmbDZCmZaqz01UPOaQveoxfYRv1tHozWGPMcuTBuvQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <script src="https://kit.fontawesome.com/4729fb2ee2.js" crossorigin="anonymous"></script>
     </head>
     <body>
         <header>
             <nav class="navbar is-transparent">
-                <div class="navbar-brand">
-                  <a class="navbar-item" href="https://bulma.io">
-                    <img src="https://bulma.io/images/bulma-logo.png" alt="Bulma: a modern CSS framework based on Flexbox" width="112" height="28">
+              <div class="navbar-brand">
+                <a class="navbar-item" href="https://bulma.io">
+                  <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
+                </a>
+            
+                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                  <span aria-hidden="true"></span>
+                  <span aria-hidden="true"></span>
+                  <span aria-hidden="true"></span>
+                </a>
+              </div>
+            
+              <div id="navbarBasicExample" class="navbar-menu is-active">
+                <div class="navbar-start">
+                  <a class="navbar-item has-text-weight-bold" href="index.html">
+                    Home
                   </a>
-                  <div class="navbar-burger" data-target="navbarExampleTransparentExample">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                  </div>
+            
+                  <a class="navbar-item has-text-weight-bold" href="contato.html">
+                    Contato
+                  </a>
+            
+                  
                 </div>
-              
-                <div id="navbarExampleTransparentExample" class="navbar-menu is-active">
-                  <div class="navbar-start">
-                    <a class="navbar-item" href="index.html">
-                      Home
-                    </a>
-                    <div class="navbar-item">
-                      <a class="navbar-item" href="contato.html">
-                        Contato
+            
+                <div class="navbar-end">
+                  <div class="navbar-item">
+                    <div class="buttons">
+                      <a class="button is-black is-text-white" href="https://github.com/JoaoVitor1110" target="_blank">
+                        <span class="icon is-small is-left"><i class="fa-brands fa-github"></i></span>
+                        <strong>Github</strong>
+                      </a>
+                      <a class="button is-success" href="https://api.whatsapp.com/send?phone=5511998983346" target="_blank">
+                        <span class="icon is-small is-left">
+                          <i class="fa-brands fa-whatsapp"></i>
+                        </span>
+                        <strong>Whatsapp</strong>
                       </a>
                     </div>
                   </div>
-
-                  <div class="navbar-end">
-                    <div class="navbar-item">
-                      <div class="buttons">
-                        <a class="button is-black is-text-white" href="https://github.com/JoaoVitor1110" target="_blank">
-                          <span class="icon is-small is-left"><i class="fa-brands fa-github"></i></span>
-                          <strong>Github</strong>
-                        </a>
-                        <a class="button is-success" href="https://api.whatsapp.com/send?phone=5511998983346" target="_blank">
-                          <span class="icon is-small is-left">
-                            <i class="fa-brands fa-whatsapp"></i>
-                          </span>
-                          <strong>Whatsapp</strong>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
                 </div>
-              </nav>
+              </div>
+            </nav>
         </header>
         <section class="section">
             <div class="container">
@@ -61,13 +64,13 @@
                         <div class="card">
                             <div class="card-image">
                               <figure class="image is-4by3">
-                                <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
+                                <img src="minha-foto.jpg" alt="Placeholder image">
                               </figure>
                             </div>
                             <div class="card-content">
                               <div class="media">
                                 <div class="media-content">
-                                  <p class="title is-5"><strong>João Vitor dos Santos Alves</strong></p>
+                                  <p class="title is-5 has-text-weight-bold">João Vitor dos Santos Alves</p>
                                   <p class="tag is-dark is-medium">Estagiário em Desenvolvimento</p>
                                 </div>
                               </div>
@@ -95,7 +98,7 @@
                           </div>
                         </div>
                       </div>
-                      <br>
+
                       <div class="card">
                         <header class="card-header">
                           <p class="card-header-title">
@@ -135,9 +138,8 @@
                             </div>
                           </div>
                         </div>
-                        
                       </div>
-                      <br>
+
                       <div class="card">
                         <header class="card-header">
                           <p class="card-header-title">
@@ -146,12 +148,12 @@
                         </header>
                         <div class="card-content">
                           <div class="content">
-                            <p><strong>Análise e Desenvolvimento de Sistemas - FMU (ago/23 - dez/25)</strong></p>
-                            Atualmente trabalhei com exercicios e atividades em Python junto a lógica de programação, e tive uma grande carga teórica de sistemas e redes.
+                            <p class="title is-5 has-text-weight-bold">Análise e Desenvolvimento de Sistemas - FMU (ago/23 - dez/25)</p>
+                            <p>Atualmente trabalhei com exercicios e atividades em Python junto a lógica de programação, e tive uma grande carga teórica de sistemas e redes.</p>
                           </div>
                           <div class="content">
-                            <p><strong>Cursos livres - Alura e Estudonauta (ago/22 - nov/23)</strong></p>
-                            Tive um vasto aprendizado sobre as linguagens, principalmente a triade do frontend e um inicio em C#. Sempre acompanhando também a respectiva documentação e buscando fazer exercicios em cima de cada aprendizado.
+                            <p class="title is-5 has-text-weight-bold">Cursos livres - Alura e Estudonauta (ago/22 - nov/23)</p>
+                            <p>Tive um vasto aprendizado sobre as linguagens, principalmente a triade do frontend e um inicio em C#. Sempre acompanhando também a respectiva documentação e buscando fazer exercicios em cima de cada aprendizado.</p>
                           </div>
                         </div>
                       </div>
