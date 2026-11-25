@@ -1,153 +1,178 @@
-import AgentDemo from "@/components/AgentDemo";
 import {
-  competencias,
-  fluxoChamados,
-  formacao,
+  apice,
+  colunasMatriz,
+  emFormacao,
+  fluxoTI,
+  matriz,
   pessoa,
-  projetoPessoal,
   projetos,
-  trabalhoAtual,
+  senac,
+  tga,
+  type Imagem,
 } from "@/content/site";
+
+function Print({ imagem, escuro = false }: { imagem: Imagem; escuro?: boolean }) {
+  return (
+    <figure className={`print${escuro ? " print-escuro" : ""}`}>
+      <img src={imagem.src} alt={imagem.alt} width={imagem.largura} height={imagem.altura} loading="lazy" decoding="async" />
+      <figcaption>{imagem.legenda}</figcaption>
+    </figure>
+  );
+}
+
+function FluxoTI() {
+  return (
+    <figure className="print">
+      <div className="painel">
+        <div className="painel-topo">
+          <span>Avisos à TI</span>
+          <span className="painel-status">
+            <span className="painel-ponto" aria-hidden="true" />
+            em produção
+          </span>
+        </div>
+        <ol>
+          {fluxoTI.map((f) => (
+            <li key={f.etiqueta}>
+              <span className={`etiqueta etiqueta-${f.cor}`}>{f.etiqueta}</span>
+              <span>{f.texto}</span>
+            </li>
+          ))}
+        </ol>
+      </div>
+      <figcaption>Exemplo ilustrativo do fluxo, sem dados de colaboradores.</figcaption>
+    </figure>
+  );
+}
 
 export default function Home() {
   return (
     <>
-      <section className="abertura">
-        <div className="abertura-texto">
-          <h1>{pessoa.nome}</h1>
-          <p className="papel">
-            {pessoa.papel} na Rede Ápice de Educação, em {pessoa.cidade}.
-          </p>
-          <p className="frase">{pessoa.frase}</p>
-          <div className="acoes">
-            <a className="botao" href={pessoa.contatos.curriculo}>
-              Baixar currículo
-            </a>
-            <a className="botao botao-secundario" href={`mailto:${pessoa.contatos.email}`}>
-              Enviar e-mail
-            </a>
-          </div>
+      <section id="topo" className="abertura largura">
+        <p className="rotulo">Portfólio · {pessoa.papel}</p>
+        <h1>{pessoa.nome}</h1>
+        <p className="frase">
+          {pessoa.frase} {pessoa.cidade}.
+        </p>
+        <div className="acoes">
+          <a className="botao botao-azul" href={pessoa.contatos.linkedin}>
+            LinkedIn
+          </a>
+          <a className="botao botao-contorno" href={pessoa.contatos.github}>
+            GitHub
+          </a>
+          <a className="botao botao-contorno" href={pessoa.contatos.whatsapp}>
+            WhatsApp
+          </a>
         </div>
-        <AgentDemo />
       </section>
 
-      <section id="rede-apice" className="secao">
-        <h2>O que construo na Rede Ápice</h2>
-        <p className="secao-intro">
-          Um portal que concentra RH, DHO e Departamento Pessoal, um agente de IA para atender os
-          colaboradores e integrações que tiram trabalho manual entre RH, TI e financeiro. Descrevo tudo sem
-          dados de colaboradores.
-        </p>
-
-        <figure className="fluxo" aria-labelledby="fluxo-legenda">
-          <div className="fluxo-coluna">
-            {fluxoChamados.entradas.map((e) => (
-              <span key={e} className="fluxo-no">
-                {e}
-              </span>
+      <section id="sobre" className="faixa">
+        <div className="largura sobre">
+          <div className="sobre-texto">
+            <p className="indice">01</p>
+            <h2>Sobre mim</h2>
+            {pessoa.sobre.map((p) => (
+              <p key={p}>{p}</p>
             ))}
           </div>
-          <div className="fluxo-seta" aria-hidden="true" />
-          <div className="fluxo-coluna fluxo-meio">
-            <span className="fluxo-no fluxo-no-central">{fluxoChamados.centro}</span>
-          </div>
-          <div className="fluxo-seta" aria-hidden="true" />
-          <div className="fluxo-coluna">
-            {fluxoChamados.saidas.map((s) => (
-              <span key={s} className="fluxo-no">
-                {s}
-              </span>
-            ))}
-          </div>
-          <figcaption id="fluxo-legenda">
-            Os dados entram uma vez no portal. Dele saem os indicadores da diretoria, os chamados e as
-            credenciais da TI e os arquivos prontos para os sistemas de folha e de despesas.
-          </figcaption>
-        </figure>
-
-        <div className="trabalhos">
-          {trabalhoAtual.map((t) => (
-            <article key={t.titulo} className="trabalho">
-              <h3>{t.titulo}</h3>
-              <p className="trabalho-resumo">{t.resumo}</p>
-              <ul>
-                {t.pontos.map((p) => (
-                  <li key={p}>{p}</li>
+          <div className="matriz-rolagem" role="region" aria-label="Habilidades por projeto" tabIndex={0}>
+            <table className="matriz">
+              <caption className="so-leitor">Habilidades e os projetos em que foram usadas</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Habilidade</th>
+                  {colunasMatriz.map((c) => (
+                    <th scope="col" key={c}>
+                      {c}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {matriz.map((linha) => (
+                  <tr key={linha.habilidade}>
+                    <th scope="row">{linha.habilidade}</th>
+                    {linha.usos.map((u, i) => (
+                      <td key={colunasMatriz[i]}>
+                        {u ? (
+                          <span className="ponto" role="img" aria-label="usado" />
+                        ) : (
+                          <span className="ponto-vazio" role="img" aria-label="não usado" />
+                        )}
+                      </td>
+                    ))}
+                  </tr>
                 ))}
-              </ul>
-              <p className="stack">{t.stack.join(", ")}</p>
-            </article>
+              </tbody>
+            </table>
+          </div>
+          <p className="matriz-nota">
+            Cada ponto liga uma habilidade a um projeto desta página. Em formação: {emFormacao}
+          </p>
+        </div>
+      </section>
+
+      <section id="projetos" className="largura projetos-secao">
+        <div className="cabeca-secao">
+          <p className="indice">02</p>
+          <h2>Projetos</h2>
+          <p>Do mais recente ao mais antigo. Primeiro o que construo na Rede Ápice, depois os projetos para clientes.</p>
+        </div>
+
+        <h3 className="periodo">{apice.periodo}</h3>
+        {apice.trabalhos.map((t, i) => (
+          <article key={t.titulo} className={`trabalho${i % 2 ? " trabalho-invertido" : ""}`}>
+            {t.imagem ? <Print imagem={t.imagem} /> : t.fluxo ? <FluxoTI /> : null}
+            <div className="trabalho-texto">
+              <h4>{t.titulo}</h4>
+              <p>{t.texto}</p>
+              <p className="stack">{t.stack}</p>
+            </div>
+          </article>
+        ))}
+        <div className="extras">
+          {apice.extras.map((e) => (
+            <div key={e.titulo}>
+              <h4>{e.titulo}</h4>
+              <p>{e.texto}</p>
+            </div>
           ))}
         </div>
-      </section>
 
-      <section id="projetos" className="secao">
-        <h2>Projetos para clientes</h2>
-        <p className="secao-intro">Automações e BI que fiz como freelancer entre fevereiro de 2025 e agosto de 2026.</p>
-        <ul className="projetos">
+        <h3 className="periodo">{tga.periodo}</h3>
+        <article className="destaque">
+          <div className="trabalho-texto">
+            <h4>{tga.titulo}</h4>
+            <p>{tga.texto}</p>
+            <p className="stack">{tga.stack}</p>
+            <a className="botao botao-menta" href={tga.link}>
+              Abrir portal.tgaempregos.com.br
+            </a>
+          </div>
+          <Print imagem={tga.imagem} escuro />
+        </article>
+        <ul className="cartoes">
           {projetos.map((p) => (
             <li key={p.slug}>
-              <a href={`/projetos/${p.slug}`} className="projeto">
-                <span className="projeto-titulo">{p.titulo}</span>
-                <span className="projeto-resultado">{p.resultado}</span>
-                <span className="projeto-cliente">{p.cliente}</span>
+              <h4>{p.titulo}</h4>
+              <p>{p.curto}</p>
+              <a href={`/projetos/${p.slug}`} aria-label={`Ver case: ${p.titulo}`}>
+                Ver case
               </a>
             </li>
           ))}
         </ul>
 
-        <div className="pessoal">
-          <h3>{projetoPessoal.titulo}</h3>
-          <p>{projetoPessoal.descricao}</p>
-          <p className="stack">{projetoPessoal.stack.join(", ")}</p>
-        </div>
-      </section>
-
-      <section className="secao secao-dupla">
-        <div>
-          <h2>Sobre mim</h2>
-          {pessoa.sobre.map((p) => (
-            <p key={p}>{p}</p>
-          ))}
-        </div>
-        <div>
-          <h2>Ferramentas</h2>
-          <dl className="competencias">
-            {competencias.map((c) => (
-              <div key={c.grupo}>
-                <dt>{c.grupo}</dt>
-                <dd>{c.itens.join(", ")}</dd>
-              </div>
-            ))}
-          </dl>
-          <h2 className="h2-menor">Formação</h2>
-          <ul className="formacao">
-            {formacao.map((f) => (
-              <li key={f.curso}>
-                <strong>{f.curso}</strong>, {f.onde}, {f.quando}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
-      <section id="contato" className="secao contato">
-        <h2>Vamos conversar</h2>
-        <p>Estou aberto a vagas de estágio e júnior em dados, IA e automação, em São Paulo ou remoto.</p>
-        <ul className="contatos">
-          <li>
-            <a href={`mailto:${pessoa.contatos.email}`}>{pessoa.contatos.email}</a>
-          </li>
-          <li>
-            <a href={pessoa.contatos.whatsapp}>WhatsApp</a>
-          </li>
-          <li>
-            <a href={pessoa.contatos.linkedin}>LinkedIn</a>
-          </li>
-          <li>
-            <a href={pessoa.contatos.github}>GitHub</a>
-          </li>
-        </ul>
+        <h3 className="periodo">{senac.periodo}</h3>
+        <article className="academico">
+          <h4>{senac.titulo}</h4>
+          <div>
+            <p>{senac.texto}</p>
+            <p className="stack">{senac.stack}</p>
+            <a href={senac.link}>Ver no GitHub</a>
+          </div>
+        </article>
       </section>
     </>
   );

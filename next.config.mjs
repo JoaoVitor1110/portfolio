@@ -11,11 +11,15 @@ const antigos = {
 const nextConfig = {
   poweredByHeader: false,
   async redirects() {
-    return Object.entries(antigos).map(([de, para]) => ({
-      source: `/${de}`,
-      destination: `/projetos/${para}`,
-      permanent: true,
-    }));
+    return [
+      ...Object.entries(antigos).map(([de, para]) => ({
+        source: `/${de}`,
+        destination: `/projetos/${para}`,
+        permanent: true,
+      })),
+      // O Portal TGA saiu das páginas de case e virou destaque na página inicial.
+      { source: "/projetos/portal-tga-empregos", destination: "/#projetos", permanent: true },
+    ];
   },
 };
 
